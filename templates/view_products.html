@@ -1,14 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Document</title>
 </head>
 <body>
+    <div class="nav">
+        <ul>
+            <li style="float:left" class="sitename">EcomSite</li>
+            <li><a href="" class="right_end">HOME</a></li>
+            <li><a href="">LOGIN</a></li>
+            <li><a href="">REGISTER</a></li>
+            
+          </ul>
+    </div>
+    <div style="padding-top: 2cm;">
     <form action="">
         {% csrf_token %}
-        <table>
+        <table  style="padding-left: 2cm;">
             <tr>
                 <th>id</th>
                 <th>Name</th>
@@ -20,7 +32,7 @@
             <td>{{forloop.counter}}</td>
             <td>{{i.name}}</td>
              {% if i.image %}
-             <td><img src="{{ i.image.url }}" alt="" width="80px"></td>
+             <td><img src="{{ i.image.url }}" alt="" width="600px"></td>
              {% else %}
              <td>no image</td>
              {% endif %}
@@ -28,5 +40,6 @@
         </tr>
         {% endfor %}
         </table>
+    </div>
 </body>
 </html>

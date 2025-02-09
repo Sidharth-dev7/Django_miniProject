@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.sitename{
+    color: azure;
+}
+  
+
+
+th{
+    color: red;
+    padding-right: 1cm;
+   
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  li {
+    float: right;
+   
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111eb6;
+  }
+
+
+  .right_end{
+    margin-right: 3cm;
+  }
