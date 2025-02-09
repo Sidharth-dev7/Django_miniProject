@@ -4,15 +4,24 @@
     box-sizing: border-box;
   }
 
+body{
+    background-color: rgb(123, 161, 202);
+}
+
 .sitename{
     color: azure;
+    text-align: center;
+    padding: 30px 40px;
+    font-size: larger;
+
 }
   
 
 
 th{
-    color: red;
+    color: rgb(4, 27, 49);
     padding-right: 1cm;
+    font-size: large;
    
 }
 
@@ -21,7 +30,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #0d1e48;
     position: fixed;
     top: 0;
     width: 100%;
@@ -38,6 +47,7 @@ ul {
     text-align: center;
     padding: 30px 16px;
     text-decoration: none;
+    
   }
   
   /* Change the link color to #111 (black) on hover */
@@ -48,4 +58,16 @@ ul {
 
   .right_end{
     margin-right: 3cm;
+  }
+  .buttns{
+    margin-left: 2cm;
+    border-radius: .2cm;
+    width: 2cm;
+    background-color: #0d1e48;
+    height: 1cm;
+     
+  }
+  .buttns:hover{
+    background-color: #111eb6;
+    
   }

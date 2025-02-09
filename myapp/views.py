@@ -16,3 +16,7 @@ def registration(request):
 def vieww(request):
     cr = media.objects.all()
     return render(request,"view_products.html", {'cr':cr})
+
+def detailvieww(request,pk):
+    cr=media.objects.get(id=pk)
+    return render(request,"detailed_view.html",{'cr':cr})

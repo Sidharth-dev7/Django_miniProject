@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nav" style="margin-top: 3cm;">
+        <ul>
+            <li style="float:left" class="sitename">EcomSite</li>
+            <li><a href="" class="right_end">HOME</a></li>
+            <li><a href="">CART</a></li>
+            <li><a href="">LOGIN</a></li>
+            <li><a href="">REGISTER</a></li>
+            
+          </ul>
+    </div>
+    <div>
+        <label for=""><b>Details Of {{cr.name}}</b></label>
+        <br><br><br><br>
+        <label>UserName:{{cr.name}}</label><br><br><br>
+        <label >image</label>
+        {% if cr.image %}
+        <img src="{{ cr.image.url }}" alt="" width="80px"><br><br>
+        {% else %}
+        <td>no image</td>
+        {% endif %}
+        <label >Discription: {{cr.description}}</label><br>
+        <label >price: {{cr.price}}</label>
+    </div>
+</body>
+</html>
