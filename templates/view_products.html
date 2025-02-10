@@ -13,8 +13,8 @@
             <li style="float:left" class="sitename">EcomSite</li>
             <li><a href="" class="right_end">HOME</a></li>
             <li><a href="">CART</a></li>
-            <li><a href="">LOGIN</a></li>
-            <li><a href="">REGISTER</a></li>
+            <li><a href="/logins/">LOGIN/REGISTER</a></li>
+            
             
           </ul>
     </div>
@@ -35,7 +35,8 @@
              {% else %}
              <td>no image</td>
              {% endif %}
-             <td> <button class="buttns"><a href="{% url 'detailview' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">VIEW</a></button></td>
+             <td> <button class="buttns"><a href="{% url 'detailview' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">VIEW</button></a></td>
+             <td><button class="buttns"><a href=""style="text-decoration: none; color: rgb(233, 248, 251);">ADD TO CART</a></button></td>
         </tr>
         {% endfor %}
         </table>

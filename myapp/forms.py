@@ -1,5 +1,5 @@
 from django import forms
-from .models import media
+from .models import media,useregister
 
 class imgForm(forms.ModelForm):
     class Meta:
@@ -13,3 +13,9 @@ class imgForm(forms.ModelForm):
         #     'price':forms.TextInput(attrs={'class': 'form-control'}),  
         #     'description':forms.TextInput(attrs={'class': 'form-control'})
         # }
+
+
+class regForm(forms.ModelForm):
+    class Meta:
+        model = useregister
+        fields='__all__'

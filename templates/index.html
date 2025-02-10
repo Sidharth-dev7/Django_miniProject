@@ -1,11 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Document</title>
 </head>
 <body>
-    <h1>HOME</h1>
+    <div class="nav">
+        <ul>
+            <li style="float:left" class="sitename">EcomSite</li>
+            <li><a href="" class="right_end">HOME</a></li>
+            <li><a href="">CART</a></li>
+            <li><a href="">WELCOME {{ name }}</a></li>
+            
+            
+          </ul>
+    </div>
+    <div style="padding-top: 3cm;">
+    <form action="">
+        {% csrf_token %}
+        <table  style="padding-left: 2cm;">
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+               
+            </tr>
+        {% for i in cr %}
+        <tr >
+            <td>{{i.name}}</td>
+             {% if i.image %}
+             <td><img src="{{ i.image.url }}" alt="" width="600px"></td>
+             {% else %}
+             <td>no image</td>
+             {% endif %}
+             <td> <button class="buttns"><a href="{% url 'detailview' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">VIEW</button></a></td>
+             <td><button class="buttns"><a href=""style="text-decoration: none; color: rgb(233, 248, 251);">ADD TO CART</a></button></td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
