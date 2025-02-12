@@ -2,11 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Cart
 from .forms import imgForm,regForm
 from .models import media,useregister
-# Create your views here.
-def home(request):
-    cr1 = useregister.objects.all()
-    cr = media.objects.all()
-    return render(request, "index.html", {'cr':cr, 'cr1': cr1})
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
 def registration(request):
@@ -27,20 +24,22 @@ def detailvieww(request,pk):
 
 
 
+from django.contrib.auth import authenticate, login
+
 def userlog(request):
-    if request.method=='POST':
-        username=request.POST.get("username")
-        password=request.POST.get("password")
-        cr=useregister.objects.filter(username=username,password=password)
-        if cr:
-            user_details=useregister.objects.get(username=username,password=password)
-            id=user_details.id
-            name=user_details.name
-            request.session['id']=id
-            request.session['name']=name
-            return redirect('Home')
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)  # Logs in the user and starts a session
+            return redirect('view')  # Redirect to the home page after login
         else:
-            return render(request,'login.html')
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+
+    return render(request, 'login.html')
 
 
 def loginn(request):
@@ -59,10 +58,13 @@ def reg2(request):
 
 
 
+def user_logout(request):
+    logout(request)
+    return redirect('view') 
 
 
 
-
+@login_required(login_url='/logins/')
 def add_to_cart(request, product_id):
     product = get_object_or_404(media, id=product_id)
     
@@ -101,4 +103,10 @@ def decrement_quantity(request, cart_item_id):
         cart_item.quantity -= 1
         cart_item.save()
     
+    return redirect('cart')
+
+
+def delete_from_cart(request, item_id):
+    item = get_object_or_404(Cart, id=item_id)
+    item.delete()
     return redirect('cart')

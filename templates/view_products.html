@@ -12,34 +12,57 @@
         <ul>
             <li style="float:left" class="sitename">EcomSite</li>
             <li><a href="" class="right_end">HOME</a></li>
-            <li><a href="">CART</a></li>
-            <li><a href="/logins/">LOGIN/REGISTER</a></li>
-            
-            
-          </ul>
+            <li><a href="{% url 'cart'  %}">CART</a></li>
+    
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+                <li><a href="{% url 'logins' %}">LOGIN/REGISTER</a></li>
+            {% endif %}
+        </ul>
     </div>
     <div style="padding-top: 3cm;">
-    <form action="">
-        {% csrf_token %}
-        <table  style="padding-left: 2cm;">
-            <tr>
-                <th>Name</th>
-                <th>Image</th>
-               
-            </tr>
-        {% for i in cr %}
-        <tr >
-            <td>{{i.name}}</td>
-             {% if i.image %}
-             <td><img src="{{ i.image.url }}" alt="" width="600px"></td>
-             {% else %}
-             <td>no image</td>
-             {% endif %}
-             <td> <button class="buttns"><a href="{% url 'detailview' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">VIEW</button></a></td>
-             <td><button class="buttns"><a href=""style="text-decoration: none; color: rgb(233, 248, 251);">ADD TO CART</a></button></td>
-        </tr>
-        {% endfor %}
-        </table>
+        <form action="">
+            {% csrf_token %}
+            <table style="padding-left: 2cm;">
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                </tr>
+                {% for i in cr %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    {% if i.image %}
+                    <td><img src="{{ i.image.url }}" alt="" width="600px"></td>
+                    {% else %}
+                    <td>No image</td>
+                    {% endif %}
+                    <td>
+                        <button class="buttns">
+                            <a href="{% url 'detailview' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">VIEW</a>
+                        </button>
+                    </td>
+                    <td>
+                        {% if user.is_authenticated %}
+                            <button class="buttns">
+                                <a href="{% url 'add_to_cart' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">ADD TO CART</a>
+                            </button>
+                        {% else %}
+                            <button class="buttns" onclick="showLoginAlert()">
+                                ADD TO CART
+                            </button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
     </div>
 </body>
 </html>
+<script>
+function showLoginAlert() {
+    alert("LOGIN FIRST");
+    window.location.href = "{% url 'logins' %}";
+}
+</script>

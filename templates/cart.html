@@ -11,8 +11,8 @@
     <div class="nav">
         <ul>
             <li style="float:left" class="sitename">EcomSite</li>
-            <li><a href="" class="right_end">HOME</a></li>
-            <li><a href="">CART</a></li>
+            <li><a href="{% url 'view'  %}" class="right_end">HOME</a></li>
+          
         </ul>
     </div>
 
@@ -31,12 +31,16 @@
             <td>{{ item.product.name }}</td>
             <td><img src="{{ item.product.image.url }}" alt="" width="100px"></td>
             <td>
-                <a href="{% url 'increment_quantity' item.id %}">[+]</a>
-                {{ item.quantity }}
                 <a href="{% url 'decrement_quantity' item.id %}">[-]</a>
+                {{ item.quantity }}
+                <a href="{% url 'increment_quantity' item.id %}">[+]</a>
             </td>
             <td>{{ item.product.price }}</td>
             <td>{{ item.get_total_price }}</td>
+            <td>
+                <a href="{% url 'delete_from_cart' item.id %}" style="color: red;">Delete</a>
+            </td>
+            
         </tr>
         {% endfor %}
     </table>
