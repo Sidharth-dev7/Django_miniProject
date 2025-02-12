@@ -36,7 +36,8 @@
              <td>no image</td>
              {% endif %}
              <td> <button class="buttns"><a href="{% url 'detailview' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">VIEW</button></a></td>
-             <td><button class="buttns"><a href=""style="text-decoration: none; color: rgb(233, 248, 251);">ADD TO CART</a></button></td>
+             <td><button class="buttns"><a href="{% url 'add_to_cart' i.id %}" style="text-decoration: none; color: rgb(233, 248, 251);">ADD TO CART</a></button></td>
+
         </tr>
         {% endfor %}
         </table>

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>Cart</title>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li style="float:left" class="sitename">EcomSite</li>
+            <li><a href="" class="right_end">HOME</a></li>
+            <li><a href="">CART</a></li>
+        </ul>
+    </div>
+
+    <h2 style="margin-top: 3cm;">Your Cart</h2>
+    <table style="padding-left: 2cm;">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td><img src="{{ item.product.image.url }}" alt="" width="100px"></td>
+            <td>
+                <a href="{% url 'increment_quantity' item.id %}">[+]</a>
+                {{ item.quantity }}
+                <a href="{% url 'decrement_quantity' item.id %}">[-]</a>
+            </td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.get_total_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Total: ${{ total_price }}</h3>
+</body>
+</html>
+
+
