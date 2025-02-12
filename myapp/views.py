@@ -102,3 +102,14 @@ def decrement_quantity(request, cart_item_id):
         cart_item.save()
     
     return redirect('cart')
+
+def remove_item_from_cart(request, item_id):
+    try:
+        # Get the cart item by ID and delete it
+        cart_item = Cart.objects.get(id=item_id)
+        cart_item.delete()
+    except Cart.DoesNotExist:
+        pass  # Handle item not found if necessary
+    
+    # Redirect to the cart page after removal
+    return redirect('cart') 
